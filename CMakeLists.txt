@@ -24,5 +24,17 @@ install(TARGETS jpegwrapper
   EXPORT JPEGWrapperTarget
   ARCHIVE DESTINATION lib)
 
+set(JPEGWRAPPER_LIBRARY "${CMAKE_INSTALL_PREFIX}/lib/libjpegwrapper.a")
+set(JPEGWRAPPER_LIBRARIES ${CUSTOM_LIBRARIES})
+
+configure_file(cmake/JPEGWrapperConfig.cmake.in
+  "${PROJECT_BINARY_DIR}/cmake/JPEGWrapperConfig.cmake" @ONLY)
+
+install(FILES "${PROJECT_BINARY_DIR}/cmake/JPEGWrapperConfig.cmake"
+  DESTINATION cmake)
+
+install(EXPORT JPEGWrapperTarget
+  DESTINATION cmake)
+
 install(DIRECTORY src/ DESTINATION include/jpegwrapper
         FILES_MATCHING PATTERN "*.h")
