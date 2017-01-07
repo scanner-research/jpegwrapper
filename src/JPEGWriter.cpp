@@ -84,3 +84,10 @@ void JPEGWriter::output_message() {
   warningMsg += buffer;
   warningMsg += '\n';
 }
+
+size_t JPEGWriter::output_size() {
+  unsigned char* outp = NULL;
+  size_t out_len = 0;
+  jpeg_mem_dest(&cinfo, &outp, &out_len);
+  return out_len;
+}
